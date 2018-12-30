@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android开发笔记</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">Android开发笔记</h1>
+        <div class="show-content">
+          <hr><p>简单来说，<b>Bundle</b>就是用来传参数的【键值对key-value】在使用Bundle传递数据时，要注意，Bundle的大小是有限制的 &lt; 0.5MB，如果大于这个值 是会报TransactionTooLargeException异常的<br></p><hr><p>对于需要软件本身需要用到的程序系统变量，然而我们可以使用<b>SharedPreferences</b>，它是Android中最容易理解的数据存储技术，实际上SharedPreferences处理的就是一个键值对。 SharedPreferences常用来存储一些轻量级的数据。</p><hr><p>在Android的布局文件中，往往使用dp作为控件的宽度和高度尺寸，但是在Java代码中，调用getWidth()方法获得的尺寸单位</p><p>却是像素px,这两个单位有明显的区别：dp和屏幕的密度有关，而px与屏幕密度无关，所以使用时经常会涉及到两</p><p>者之间的互相转化，代码示例如下：</p><p>public int Dp2Px(Context context, float dp) {</p><p>final float scale = context.getResources().getDisplayMetrics().density;</p><p>return (int) (dp * scale + 0.5f);</p><p>}</p><p>public int Px2Dp(Context context, float px) {</p><p>final float scale = context.getResources().getDisplayMetrics().density;</p><p>return (int) (px / scale + 0.5f);</p><p>}</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

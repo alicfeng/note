@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>commons-io使用笔记</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">commons-io使用笔记</h1>
+        <div class="show-content">
+          <p>commons-io是一款处理io流的工具，封装了很多处理io流和文件的方法，可以大大简化我们处理io流和操作文件的代码。从common-io的官方使用文档可以看出，它主要分为工具类、尾端类、行迭代器、文件过滤器、文件比较器和扩展流。<br></p><p>一、工具类</p><p>工具类包括FileUtils、IOUtils、FilenameUtils和FileSystemUtils，前三者的方法并没有多大的区别，只是操作的对象不同，故名思议：FileUtils主要操作File类，IOUtils主要操作IO流，FilenameUtils则是操作文件名，FileSystemUtils包含了一些JDK没有提供的用于访问文件系统的实用方法。当前，只有一个用于读取硬盘空余空间的方法可用。实例如下</p><p>package com.wj.test;</p><p>import java.io.File;</p><p>import java.io.IOException;</p><p>import java.util.List;</p><p>import org.apache.commons.io.FileUtils;</p><p>import org.junit.After;</p><p>import org.junit.Before;</p><p>import org.junit.Test;</p><p>public class FileUtilsTest {</p><p>private String basePath = null;</p><p>@Before</p><p>public void setUp() {</p><p>basePath = System.getProperty("user.dir") + "\\file\\";</p><p>}</p><p>@After</p><p>public void tearDown() throws Exception {</p><p>}</p><p>/**</p><p>* 拷贝文件</p><p>* @throws IOException</p><p>*/</p><p>@Test</p><p>public void testCopy() throws IOException {</p><p>File srcFile = new File(basePath + "a.txt");</p><p>File destFile = new File(basePath + "b.txt");</p><p>FileUtils.copyFile(srcFile, destFile);</p><p>}</p><p>/**</p><p>* 删除文件</p><p>* @throws IOException</p><p>*/</p><p>@Test</p><p>public void testDelete() throws IOException{</p><p>File delFile = new File(basePath + "b.txt");</p><p>FileUtils.forceDelete(delFile);</p><p>//FileUtils.forceMkdir(delFile);</p><p>}</p><p>/**</p><p>* 比较文件内容</p><p>* @throws IOException</p><p>*/</p><p>@Test</p><p>public void testCompareFile() throws IOException{</p><p>File srcFile = new File(basePath + "a.txt");</p><p>File destFile = new File(basePath + "b.txt");</p><p>boolean result = FileUtils.contentEquals(srcFile, destFile);</p><p>System.out.println(result);</p><p>}</p><p>/**</p><p>* 移动文件</p><p>* @throws IOException</p><p>*/</p><p>@Test</p><p>public void testMoveFile() throws IOException{</p><p>File srcFile = new File(basePath + "b.txt");</p><p>File destDir = new File(basePath + "move");</p><p>FileUtils.moveToDirectory(srcFile, destDir, true);</p><p>}</p><p>/**</p><p>* 读取文件内容</p><p>* @throws IOException</p><p>*/</p><p>@Test</p><p>public void testRead() throws IOException{</p><p>File srcFile = new File(basePath + "a.txt");</p><p>String content = FileUtils.readFileToString(srcFile);</p><p>List contents = FileUtils.readLines(srcFile);</p><p>System.out.println(content);</p><p>System.out.println("******************");</p><p>for (String string : contents) {</p><p>System.out.println(string);</p><p>}</p><p>}</p><p>/**</p><p>* 写入文件内容</p><p>* @throws IOException</p><p>*/</p><p>@Test</p><p>public void testWrite() throws IOException{</p><p>File srcFile = new File(basePath + "a.txt");</p><p>FileUtils.writeStringToFile(srcFile, "\nyes文件", true);</p><p>}</p><p>}</p><p>package com.wj.test;</p><p>import java.io.IOException;</p><p>import org.apache.commons.io.FileSystemUtils;</p><p>import org.junit.After;</p><p>import org.junit.Before;</p><p>import org.junit.Test;</p><p>public class FileSystemUtilsTest {</p><p>@Before</p><p>public void setUp() throws Exception {</p><p>}</p><p>@After</p><p>public void tearDown() throws Exception {</p><p>}</p><p>/**</p><p>* 获取磁盘空余空间</p><p>* @throws IOException</p><p>*/</p><p>@SuppressWarnings("deprecation")</p><p>@Test</p><p>public void testFreeSpace() throws IOException {</p><p>// 以字节为单位</p><p>System.out.println(FileSystemUtils.freeSpace("c:\\") / 1024 / 1024 / 1024);</p><p>System.out.println(FileSystemUtils.freeSpace("d:\\") / 1024 / 1024 / 1024);</p><p>// 以k为单位</p><p>System.out.println(FileSystemUtils.freeSpaceKb("e:\\") / 1024 / 1024);</p><p>System.out.println(FileSystemUtils.freeSpaceKb("f:\\") / 1024 / 1024);</p><p>}</p><p>}</p><p>二、尾端类</p><p>不同的计算机体系结构使用不同约定的字节排序。在所谓的“低位优先”体系结构中（如Intel），低位字节处于内存中最低位置，而其后的字节，则处于更高的位置。在“高位优先”的体系结构中（如Motorola），这种情况恰恰相反。</p><p>这个类库上有两个相关类：</p><p>EndianUtils包含用于交换java原对象和流之间的字节序列。</p><p>SwappedDataInputStream类是DataInput接口的一个实例。使用它，可以读取非本地的字节序列。</p><p>三、行迭代器</p><p>org.apache.commons.io.LineIterator类提供了一个灵活的方式与基于行的文件交互。可以直接创建一个实例，或者使用FileUtils或IOUtils的工厂方法来创建，实例如下：</p><p>package com.wj.test;</p><p>import java.io.File;</p><p>import java.io.IOException;</p><p>import org.apache.commons.io.FileUtils;</p><p>import org.apache.commons.io.LineIterator;</p><p>import org.junit.After;</p><p>import org.junit.Before;</p><p>import org.junit.Test;</p><p>public class LineIteratorTest {</p><p>private String basePath = null;</p><p>@Before</p><p>public void setUp() throws Exception {</p><p>basePath = System.getProperty("user.dir") + "\\file\\";</p><p>}</p><p>@After</p><p>public void tearDown() throws Exception {</p><p>}</p><p>/**</p><p>* 测试行迭代器</p><p>* @throws IOException</p><p>*/</p><p>@Test</p><p>public void testIterator() throws IOException{</p><p>File file = new File(basePath + "a.txt");</p><p>LineIterator li = FileUtils.lineIterator(file);</p><p>while(li.hasNext()){</p><p>System.out.println(li.nextLine());</p><p>}</p><p>LineIterator.closeQuietly(li);</p><p>}</p><p>}</p><p>四、文件过滤器</p><p>org.apache.commons.io.filefilter包定义了一个合并了java.io.FileFilter以及java.io.FilenameFilter的接口(IOFileFilter)。除此之外，这个包还提供了一系列直接可用的IOFileFilter的实现类，可以通过他们合并其它的文件过滤器。比如，这些文件过滤器可以在列出文件时使用或者在使用文件对话框时使用。实例如下：</p><p>package com.wj.test;</p><p>import java.io.File;</p><p>import java.io.IOException;</p><p>import org.apache.commons.io.filefilter.EmptyFileFilter;</p><p>import org.apache.commons.io.filefilter.SuffixFileFilter;</p><p>import org.junit.After;</p><p>import org.junit.Before;</p><p>import org.junit.Test;</p><p>public class FileFilterTest {</p><p>private String basePath = null;</p><p>@Before</p><p>public void setUp() throws Exception {</p><p>basePath = System.getProperty("user.dir") + "\\file\\";</p><p>}</p><p>@After</p><p>public void tearDown() throws Exception {</p><p>}</p><p>/**</p><p>* 空内容文件过滤器</p><p>* @throws IOException</p><p>*/</p><p>@Test</p><p>public void testEmptyFileFilter() throws IOException{</p><p>File dir = new File(basePath);</p><p>String[] files = dir.list(EmptyFileFilter.NOT_EMPTY);</p><p>for (String file : files) {</p><p>System.out.println(file);</p><p>}</p><p>}</p><p>/**</p><p>* 文件名称后缀过滤器</p><p>* @throws IOException</p><p>*/</p><p>@Test</p><p>public void testSuffixFileFilter() throws IOException{</p><p>File dir = new File(basePath);</p><p>String[] files = dir.list(new SuffixFileFilter("a.txt"));</p><p>for (String file : files) {</p><p>System.out.println(file);</p><p>}</p><p>}</p><p>}</p><p>五、文件比较器</p><p>org.apache.commons.io.comparator包为java.io.File提供了一些java.util.Comparator接口的实现。例如，可以使用这些比较器对文件集合或数组进行排序。实例如下：</p><p>package com.wj.test;</p><p>import java.io.File;</p><p>import java.io.IOException;</p><p>import org.apache.commons.io.comparator.CompositeFileComparator;</p><p>import org.apache.commons.io.comparator.DirectoryFileComparator;</p><p>import org.apache.commons.io.comparator.NameFileComparator;</p><p>import org.apache.commons.io.comparator.PathFileComparator;</p><p>import org.junit.After;</p><p>import org.junit.Before;</p><p>import org.junit.Test;</p><p>public class ComparatorTest {</p><p>private String basePath = null;</p><p>@Before</p><p>public void setUp() throws Exception {</p><p>basePath = System.getProperty("user.dir") + "\\file\\";</p><p>}</p><p>@After</p><p>public void tearDown() throws Exception {</p><p>}</p><p>/**</p><p>* 文件名称比较器</p><p>* @throws IOException</p><p>*/</p><p>@Test</p><p>public void testNameFileComparator() throws IOException {</p><p>File f1 = new File(basePath + "a.txt");</p><p>File f2 = new File(basePath + "c.txt");</p><p>int result = NameFileComparator.NAME_COMPARATOR.compare(f1, f2);</p><p>System.out.println(result);</p><p>}</p><p>/**</p><p>* 文件路径比较器</p><p>* @throws IOException</p><p>*/</p><p>@Test</p><p>public void testPathFileComparator() throws IOException {</p><p>File f1 = new File(basePath + "a.txt");</p><p>File f2 = new File(basePath + "c.txt");</p><p>int result = PathFileComparator.PATH_COMPARATOR.compare(f1, f2);</p><p>System.out.println(result);</p><p>}</p><p>/**</p><p>* 组合比较器</p><p>* @throws IOException</p><p>*/</p><p>@SuppressWarnings("unchecked")</p><p>@Test</p><p>public void testCompositeFileComparator() throws IOException {</p><p>File dir = new File(basePath);</p><p>File [] files = dir.listFiles();</p><p>for (File file : files) {</p><p>System.out.println(file.getName());</p><p>}</p><p>CompositeFileComparator cfc = new CompositeFileComparator(</p><p>DirectoryFileComparator.DIRECTORY_COMPARATOR,</p><p>NameFileComparator.NAME_COMPARATOR);</p><p>cfc.sort(files);</p><p>System.out.println("*****after sort*****");</p><p>for (File file : files) {</p><p>System.out.println(file.getName());</p><p>}</p><p>}</p><p>}</p><p>六、扩展流</p><p>org.apache.commons.io.input和org.apache.commons.io.output包中包含的针对数据流的各种各样的的实现。包括：</p><p>空输出流－默默吸收发送给它的所有数据</p><p>T型输出流－全用两个输出流替换一个进行发送</p><p>字节数组输出流－这是一个更快版本的JDK类</p><p>计数流－计算通过的字节数</p><p>代理流－使用正确的方法委拖</p><p>可锁写入－使用上锁文件提供同步写入</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

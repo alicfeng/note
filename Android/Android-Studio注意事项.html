@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android Studio注意事项</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">Android Studio注意事项</h1>
+        <div class="show-content">
+          <p><b>Question-one</b>：有时候从 Github 上拷贝人家的工程，运行会出现各种依赖包、版本包问题，比如buildToolsVersion某一个版本不存在，需要你安装，那么你可以修改成你开发环境已经配置的版本。</p><p>在项目的 <b>build.gradle</b> 里面设置，注意有两个build.gradle，最好都注意一下。把build.gradle里面的版本改为自己能运行的工程里面版本号。</p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-ee6e0c8d4131ad39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br><div class="image-caption"></div>
+</div><p><b>Question-two</b>:在开源库下载下来的项目或者库文件的时候，如果你想将它成为你的项目的库文件的时候，必须修改依赖的库文件的属性为library</p><p>在上图的顶部有一个apply plugin属性，你需要将它的属性值修改成com.android.library.否则的话编译项目的时候会出现如下警告：</p><p>Warning:unspecified on project qrtest resolves to an APK archive which.......<br></p><hr><p><b>Question-three：Android Studio开发项目越来越大的时候会变得延迟卡顿</b>，甚至在代码提示和响应速度大大减弱，作为有强迫症的我来说，绝对会不耐烦，必须处理：</p><p>修改android-studio/bin/studio.vmoptions studio64.vmoptions 两个文件的以下属性就可以</p><p>-Xms2048m</p><p>-Xmx2048m</p><p>-XX:MaxPermSize=2048m</p><p>-XX:ReservedCodeCacheSize=1024m</p><p>或者可以将原来的值都改成两倍即可。</p><hr><p><b>Question-four：:在使用Google开发工具Android studio默认中文是不显示的【出现乱码】</b>，之前也没怎么留意，毕竟项目以及大多数的文件都是英文的。重要的是编译报错的信息显示中文的话那就麻烦了，必须得显示出来，否则报错什么都不清楚。网上找了很多的资料，结果却相反的，也许那时win下面的解决办法，于是我就往反方向跑，准了！</p><p>解决办法：File -&gt; Settings -&gt; Appearance 然后将<b>Override default fonts by</b>取消选中【默认是选中的】</p><p>看图记录</p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-70ce9d9e71c8bb2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-70ce9d9e71c8bb2a.png?imageMogr2/auto-orient/strip" data-image-slug="70ce9d9e71c8bb2a" data-width="852" data-height="137"><br><div class="image-caption"></div>
+</div><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-061d6efe34a4d5e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-061d6efe34a4d5e1.png?imageMogr2/auto-orient/strip" data-image-slug="061d6efe34a4d5e1" data-width="817" data-height="132"><br><div class="image-caption"></div>
+</div><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-3ac6b3df3b2425b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-3ac6b3df3b2425b9.png?imageMogr2/auto-orient/strip" data-image-slug="3ac6b3df3b2425b9" data-width="437" data-height="517"><br><div class="image-caption"></div>
+</div><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-0750dd30c6a33821.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-0750dd30c6a33821.png?imageMogr2/auto-orient/strip" data-image-slug="0750dd30c6a33821" data-width="432" data-height="521"><br><div class="image-caption"></div>
+</div><hr><p><b>Question-five：Android SDK在线更新镜像服务器</b></p><p>中国科学院开源协会镜像站地址:<br></p><p>IPV4/IPV6: mirrors.opencas.cn 端口：80</p><p>IPV4/IPV6: mirrors.opencas.org 端口：80</p><p>IPV4/IPV6: mirrors.opencas.ac.cn 端口：80</p><p>上海GDG镜像服务器地址:</p><p>sdk.gdgshanghai.com 端口：8000</p><p>北京化工大学镜像服务器地址:</p><p>IPv4: ubuntu.buct.edu.cn/ 端口：80</p><p>IPv4: ubuntu.buct.cn/ 端口：80</p><p>IPv6: ubuntu.buct6.edu.cn/ 端口：80</p><p>大连东软信息学院镜像服务器地址:</p><p>mirrors.neusoft.edu.cn 端口：80</p><p>腾讯Bugly 镜像:</p><p>android-mirror.bugly.qq.com 端口：8080</p><p>腾讯镜像使用方法:http://android-mirror.bugly.qq.com:8080/include/usage.html</p><p>使用方法：<br></p><p><b>1.启动 Android SDK Manager ，打开主界面，依次选择『Tools』、『Options...』，弹出『Android SDK Manager - Settings』窗口；</b></p><p><b>2.在『Android SDK Manager - Settings』窗口中，在『HTTP Proxy Server』和『HTTP Proxy Port』输入框内填入上面镜像服务器地址(不包含http://，如下图)和端口，并且选中『Force https://... sources to be fetched using http://...』复选框。设置完成后单击『Close』按钮关闭『Android SDK Manager - Settings』窗口返回到主界面；</b></p><p><b>3.依次选择『Packages』、『Reload』。</b></p><hr>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

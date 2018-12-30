@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThinkPHP开发常用信息记录</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">ThinkPHP开发常用信息记录</h1>
+        <div class="show-content">
+          <h2>系统常量定义</h2><p> echo ""."网站的根目录地址".__ROOT__." "; </p><p> echo ""."入口文件地址".__APP__." "; </p><p>echo ""."当前模块地址".__URL__." ";</p><p>echo ""."当前url地址".__SELF__." ";</p><p>echo ""."当前操作地址".__ACTION__." ";</p><p>echo ""."当前模块的模板目录".__CURRENT__." ";</p><p>echo ""."当前操作名称".ACTION_NAME." ";</p><p>echo ""."当前项目目录".APP_PATH." ";</p><p>echo ""."当前项目名称".APP_NAME." ";</p><p>echo ""."当前项目的模板目录".APP_TMPL_PATH." ";</p><p>echo ""."项目的公共文件目录".APP_PUBLIC_PATH." ";</p><p>echo ""."项目的配置文件目录".CONFIG_PATH." ";</p><p>echo ""."项目的公共文件目录".COMMON_PATH." ";//自动缓存与表相关的全部信息</p><p>echo ""."项目的数据文件目录".DATA_PATH." runtime下的data目录";</p><p>echo ""." ".GROUP_NAME."";</p><p>echo ""." ".IS_CGI."";echo "</p><p>echo ""." ".IS_WIN."";echo "</p><p>echo ""." ".LANG_SET."";echo "</p><p>echo ""." ".LOG_PATH."";echo "</p><p>echo ""." ".LANG_PATH."";echo "</p><p>echo ""." ".TMPL_PATH."";//js放入的位置，供多个应用的公共资源echo "</p><p>echo ""." ".WEB_PUBLIC_PATH."";</p><h2>图片上传并生成缩略图【由于thinkphp没有自带生成缩略图需要自己写上传的类】</h2><br><hr><p>将下面两个文件放到Library/Think/下面</p><p>1:<a href="http://pan.baidu.com/s/1jHp3qlS" target="_blank"> UploadFile.class.php</a></p><p>2: <a href="http://pan.baidu.com/s/1gegfPOR" target="_blank">UploadImage.class.php</a></p><hr><p>$upload=newUploadFile();//实例化上传类<br></p><p>$upload-&gt;maxSize=3145728;//设置附件上传大小</p><p>$upload-&gt;allowExts=array('jpg','gif','png','jpeg');//设置附件上传类型</p><p>$upload-&gt;allowTypes=array("image/jpg","image/gif","image/png","image/jpeg","image/jgpeg");//设置附件上传类型</p><p>$upload-&gt;saveName= time() . mt_rand();//文件的名称</p><p>$upload-&gt;savePath='Public/SameGo/images/li/blog/share/';//图片的保存目录</p><p>$upload-&gt;autoSub=false;</p><p>$upload-&gt;thumb=true;//设置需要生成缩略图，仅对图像文件有效</p><p>$upload-&gt;thumbPrefix='s_';//设置需要生成缩略图的文件后缀，支持多张 - "s_,m_"</p><p>//        $upload-&gt;thumbPath = "Public/SameGo/images/li/blog/share/thumb/";//不生效</p><p>$upload-&gt;thumbMaxWidth='370';//设置缩略图最大宽度</p><p>$upload-&gt;thumbMaxHeight='250';//设置缩略图最大高度</p><p>$upload-&gt;thumbRemoveOrigin=false;//删除原图</p><p>$upload-&gt;saveRule=uniqid;//设置上传文件规则</p><p>//上传文件</p><p>if($upload-&gt;upload()) {//上传错误提示错误信息</p><p>$info=$upload-&gt;getUploadFileInfo();</p><p> echo $info[0]["savename"];//图片的名称</p><p>$data["image"] ='/helper/Public/SameGo/images/li/blog/share/'.$info[0]["savename"];//图片的路径</p><p>$data["thumb"] ='/helper/Public/SameGo/images/li/blog/share/'."s_".$info[0]["savename"];//缩略图的路径</p><p>}else{</p><p>echo"no";</p><p>}</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

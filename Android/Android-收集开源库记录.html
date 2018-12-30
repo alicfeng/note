@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Android 收集开源库记录</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">Android 收集开源库记录</h1>
+        <div class="show-content">
+          <hr><p><b>尝试每天一更～～</b></p><hr><p><b>页面切换以及PopupWindow</b> ---- 现在很多的app主页的一个activity都有很多的页面，比如qq以及微信等等，今天的主要是利用ViewPager和PopupWindow。由于制作很简单，然而没有利用开源库，于是自己尝试写了一个比较简单的，【<a href="http://pan.baidu.com/s/1kVGTcmN" target="_blank">百度云</a>】</p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-1068ef6298ccf4de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-1068ef6298ccf4de.png?imageMogr2/auto-orient/strip" data-image-slug="1068ef6298ccf4de" data-width="720" data-height="1280"><br><div class="image-caption"></div>
+</div><hr><p><b>沉浸式状态栏</b>  ---- 改变状态栏的颜色使之与APP风格一体化！我相信大家肯定看到过很多软件有沉浸式状态栏，在运行该App时改变了手机屏幕顶部状态栏的颜色，使他们的风格非常的统一，看起来异常的漂亮和清爽。其实在Android KITKAT上有一个新的特性可以设置手机状态栏的背景，让手机整个界面的风格保持一致，看起来非常清爽统一。当然这种效果只支持在API 19（Android4.4）及以上使用沉浸式状态。参考了<a href="https://github.com/niorgai/StatusBarCompat/tree/8b9e7265115db25b9e27e3a05278e76838014e92" target="_blank">GitHub/niorgai</a>。但是还是感觉乱，于是又走上了【<a href="http://pan.baidu.com/s/1qYzNMg8" target="_blank">百度云</a>】</p><p>简单说一下使用(Android API&gt;=19)：很简单【Only two steps】</p><p>首先要在布局文件中加入下面两个属性：</p><p><b>android:clipToPadding="true"</b></p><p><b>android:fitsSystemWindows="true"</b></p><p>然后java文件使用</p><p><b>StatusBarCompat.setStatusBarColor() </b>or <b>StatusBarCompat.translucentStatusBar()</b><br></p><p><b>即可，看图！</b></p><p><b><br></b></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-f7df26a5697b05f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-f7df26a5697b05f7.png?imageMogr2/auto-orient/strip" data-image-slug="f7df26a5697b05f7" data-width="720" data-height="1280"><br><div class="image-caption"></div>
+</div><hr><p><b>ListView左滑菜单</b> ----- 这个创意功能是来源于IOS系统的，常见的比如QQ消息界面的置顶与删除功能。根据项目的需求可以实现左滑删除、左滑赞、左滑分享、左滑收藏等功能，这种UI设计对移动端的处理是极其的人性化与拥有心动质感的【<a href="http://pan.baidu.com/s/1i488V3Z" target="_blank">百度云盘</a>】。</p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-5697f75d667ddf68.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br><div class="image-caption"></div>
+</div><br><p><b>欢迎引导页面</b> ----- 实现欢迎引导页面是比较简单的，基本就是通过ViewPager来实现的，和简单的逻辑处理【程序首次点开app】。由于这基本是每一个移动软件包含的模块，实现基础是比较容易的，因此我通过学习的态度自己写了一个引导页面【<a href="http://pan.baidu.com/s/1kVo2sfX" target="_blank">百度云盘</a>】。</p><p>逻辑处理可以使用SharedPreferences，它是Android中最容易理解的数据存储技术，实际上SharedPreferences处理的就是一个键值对。 SharedPreferences常用来存储一些轻量级的数据 程序系统变量。</p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-54c3a1672c4a85a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-54c3a1672c4a85a8.png?imageMogr2/auto-orient/strip" data-image-slug="54c3a1672c4a85a8" data-width="720" data-height="1280"><br><div class="image-caption"></div>
+</div><br><hr><p><b>扫描</b>【条形码】和【二维码】----- <a href="https://github.com/zxing/zxing" target="_blank">ZXing</a> 但是我觉得整一个库作为一个项目的扫描库那就没有这个必要，ZXing这一个库是非常庞大的。所以，我就简化并修改了它，减轻并成为轻量级的扫描库【<a href="http://pan.baidu.com/s/1c2pwyHE" target="_blank">百度云盘</a>】</p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-a5063cc6283ab939.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-a5063cc6283ab939.png?imageMogr2/auto-orient/strip" data-image-slug="a5063cc6283ab939" data-width="473" data-height="332"><br><div class="image-caption"></div>
+</div><hr><p><b>左滑或者右滑出现菜单选项框架</b> ----- <a href="https://github.com/SpecialCyCi/AndroidResideMenu" target="_blank">AndroidResideMenu</a>2D或3D的效果很流畅，文档API的说明也很详细，关键是封装的很不错。</p><p>中文api说明在百度云【<a href="http://pan.baidu.com/s/1pLCGBgv" target="_blank">百度云盘</a>】</p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-88ee7ae1b92adce6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-88ee7ae1b92adce6.png?imageMogr2/auto-orient/strip" data-image-slug="88ee7ae1b92adce6" data-width="720" data-height="1280"><br><div class="image-caption"></div>
+</div><hr><p><br></p><p>每天一更～～</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

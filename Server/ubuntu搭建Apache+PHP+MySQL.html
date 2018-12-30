@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ubuntu搭建Apache+PHP+MySQL</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">ubuntu搭建Apache+PHP+MySQL</h1>
+        <div class="show-content">
+          <p><b>第一阶段 ：　搭建Ａpache2+PHP+MySQL</b></p><p>安装mysql</p><blockquote><p>sudo apt-get install mysql-server mysql-client</p></blockquote><p>启动mysql服务</p><blockquote><p>sudo service mysql start</p></blockquote><p>安装apache2</p><blockquote><p>sudo apt-get install apache2</p></blockquote><p>让apache支持mysql</p><blockquote><p>sudo apt-get install libapache2-mod-auth-mysql</p></blockquote><p>安装php5</p><blockquote><p>sudo apt-get install php5</p></blockquote><p>让php支持mysql</p><blockquote><p>sudo apt-get install php5-mysql</p></blockquote><p>本地编辑项目(phpstorm)</p><blockquote><p>sudo apt-get install php5-cgi</p></blockquote><p>重启服务器apache2</p><blockquote><p>sudo /etc/init.d/apache2 restart</p></blockquote><blockquote><p>sudo service apache2 restart (推荐使用)</p></blockquote><p>以下为Apache的目录结构</p><h4>/etc/apache2/</h4><h4>|-- apache2.conf</h4><h4>|       `--  ports.conf</h4><h4>|-- mods-enabled</h4><h4>|       |-- *.load</h4><h4>|       `-- *.conf</h4><h4>|-- conf-enabled</h4><h4>|       `-- *.conf</h4><h4>`-- sites-enabled</h4><h4>`-- *.conf</h4><p>目录结构</p><p> path -&gt; /etc/apache2/apache2.conf</p><p>注意：不要在apache2定义ServerName it为全局变量</p><p>虚拟主机配置目录结构和目录结构有关联</p><p>samego path</p><h4>&lt;VirtualHost *:80&gt;</h4><h4>ServerAdmin webmaster@samego.com</h4><h4>ServerName samego.com</h4><h4>DocumentRoot /home/www/samego</h4><h4>ErrorLog ${APACHE_LOG_DIR}/error.log</h4><h4>CustomLog ${APACHE_LOG_DIR}/access.log combined</h4><h4>&lt;/VirtualHost&gt;</h4><p>详细说明</p><p>ServerName　　 （设定虚拟主机的名称）</p><p>DocumentRoot　 （指定虚拟主机的网站主目录）</p><p>ServerAlias　 （设定虚拟主机的別名）</p><p>ErrorLog　　　 （虚拟主机发生错误时要记录在哪个目录,可不设）</p><p><b>第二阶段 ：　更改apache的项目存放路径 and　处理多域名(二级域名)</b></p><p>stept-one 更改hosts文件</p><blockquote><p>sudo vi /etc/hosts</p></blockquote><p>增加如下几行</p><p>127.0.0.1   samego.com</p><p>127.0.0.1   blog.samego.com</p><p>{server_ip} samego.com</p><p>{server_ip} blog.samego.com</p><p>stept-two : 增加重写映射模块</p><blockquote>
+<p>cd /etc/apache2/mods-enabled/</p>
+<p>sudo vi alias.load</p>
+</blockquote><p>默认已经开启LoadModule alias_module /usr/lib/apache2/modules/mod_alias.so(文件里面只有该行内容)</p><p>在最后添加如下一行</p><p>alic 重写映射</p><blockquote><p>LoadModule rewrite_module /usr/lib/apache2/modules/mod_rewrite.so</p></blockquote><p>stept-three : 更改项目的文件根目录路径</p><blockquote>
+<p>cd /etc/apache2</p>
+<p>sudo vi apache2.conf</p>
+</blockquote><p>(即：sudo vi /etc/apache2/apache2.conf)</p><p>可以将里面所有的删掉 注释一个留作模板即可方便修改</p><p>修改后的内容如下</p><p>samego Director</p><p>Options Indexes FollowSymLinks</p><p>AllowOverride All</p><p>Require all granted</p><p>blog Directoer</p><p>Options Indexes FollowSymLinks</p><p>AllowOverride All</p><p>Require all granted</p><p>注意：原来AllowOverride默认是为None的</p><p>从上可以看出，我们的项目放在/home/www/下面</p><p>因此在修改后我们需要在/home/下建立www这样的workSpace</p><p>在里面在建立其他所需要的module</p><blockquote>
+<p>mkdir /home/www</p>
+<p>mkdir /home/www/blog</p>
+<p>mkdir /home/www/samego</p>
+</blockquote><p>step-four : 更改云服务的虚拟主机即VirtualHost 类似于(step-three)</p><p>将多余的删除 留一个作为参考的模块即可</p><blockquote>
+<p>cd /etc/apache2/sites-enabled</p>
+<p>sudo vi 000-default.conf</p>
+</blockquote><p>(sudo vi /etc/apache2/sites-enabled/000-default.conf)</p><p>里面有很详细的说明</p><p>修改后如下</p><p>samego path</p><p>ServerAdmin webmaster@samego.com</p><p>ServerName samego.com</p><p>DocumentRoot /home/www/samego</p><p>ErrorLog ${APACHE_LOG_DIR}/error.log</p><p>CustomLog ${APACHE_LOG_DIR}/access.log combined</p><p>blog path</p><p>ServerAdmin wesbmaster@blog.samego.com</p><p>ServerName blog.samego.com</p><p>DocumentRoot /home/www/blog</p><p>ErrorLog ${APACHE_LOG_DIR}/error.log</p><p>CustomLog ${APACHE_LOG_DIR}/access.log combined</p><p>最后这一步也很重要 重启Apache2服务器</p><blockquote><p>sudo service apache2 restart</p></blockquote><p><b>第三阶段 ： 让MySQL开启远程连接</b></p><p>注意：没有开启的话连接数据库报错：2003-can't connect to MYSQL</p><p>step-one 登陆数据库</p><p>确保Linux系统已经安装上了MySQL数据库。</p><blockquote><p>mysql -u root -p</p></blockquote><p>step-two 创建远程连接的用户</p><blockquote><p>GRANT ALL PRIVILEGES ON *.* TO 'samego'@'%' IDENTIFIED BY 'samego' WITH GRANT OPTION;</p></blockquote><p>为了直接看清楚翻译如下：</p><blockquote><p>grant all privileges on *.* to 'samego'@'%' identified by 'samego' with grant option;</p></blockquote><p>注意：第一个samego表示用户名，%表示所有的ip都可以连接，也可以设置某个ip地址运行连接，第二个samego表示密码）</p><p>step-three 命令立即生效</p><blockquote><p>flush privileges;</p></blockquote><p>step-four 查询数据库系统的用户</p><blockquote><p>SELECT DISTINCT CONCAT('User: ''',user,'''@''',host,''';') AS query FROM mysql.user;</p></blockquote><p>step-five 命令退出MySQL</p><blockquote><p>exit;</p></blockquote><p>step-six 更改bind-address</p><blockquote><p>sudo vi /etc/mysql/my.cnf</p></blockquote><p>将bind-address = 127.0.0.1</p><p>设置成bind-address = 0.0.0.0（设备地址）</p><p>重新启动（命令如下）：</p><blockquote>
+<p>sudo /etc/init.d/mysql restart</p>
+<p>sudo service mysql restart(推荐)</p>
+<p>step-seven 查看端口号</p>
+<p>show global variables like 'port';</p>
+</blockquote><blockquote><p>第四阶段 管理服务器的文件(推荐使用芒果云KODExplorer)</p></blockquote><p>To-KODExplorer</p><p>首先-从芒果云官网获取最新版的下载链接</p><p>然后-登陆服务器 执行命令 wget http://......</p><p>再然后放到相应的目录进行解压</p><p>最后-登陆芒果云之前得该它权限 执行此命令 sudo chmod -R 777 ./*</p><p>初始账户密码都为admin</p><p>注意：尽量不要自动更新，即使有提示，否则有bug</p><p>------------KODExplorer is ok---------------</p><p>To-vsftp 在云服务器配置FTP服务说明来自腾讯云</p><p><a href="http://www.qcloud.com/wiki/%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0Linux%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8" target="_blank">http://www.qcloud.com/wiki/%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0Linux%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8</a></p><p>other软连设置依赖文件 - 可以不理</p><p>RewriteEngine on RewriteMap lowercase int:tolower</p><p>RewriteMap vhost txt:/etc/apache2/vhost.map</p><p>RewriteCond RewriteCond %{HTTP_HOST}^[a-zA-Z0-9]+.samego.com$</p><p>RewriteCond ${vhost:%1} ^(/.<i>)$</i></p><p>RewriteRule ^/(.)$ %1/$1</p><p>可以看出需要创建vhost.map</p><p>content is next :</p><p>www.####.com /home/www/samego</p><p>blog.####.com /home/www/blog</p><p>搭建 Nginx+PHP+MySQL 腾讯云有教程</p><p><a href="http://www.qcloud.com/wiki/Ubuntu%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%80%9A%E8%BF%87Apt-get%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6" target="_blank">http://www.qcloud.com/wiki/Ubuntu%E7%8E%AF%E5%A2%83%E4%B8%8B%E9%80%9A%E8%BF%87Apt-get%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6</a></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

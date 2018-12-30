@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gogs部署For团队协作开发</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">Gogs部署For团队协作开发</h1>
+        <div class="show-content">
+          <p>对于非常谨慎的项目来说，使用github是很安全的，<br></p><p>但是对于学生生来说呢，速度不仅仅很快，重要的是省流量。</p><p>简单的来说一下部署的步骤：</p><p>Step-one：检查本地是否已经安装了<b>Git</b>与<b>mysql</b>,必须安装git与MySQL</p><blockquote><p>sudo apt-get install git mysql-server</p></blockquote><p>Step-two:</p><p>下载Gogs系统的二进制安装压缩包 <a href="https://github.com/gogits/gogs" target="_blank">Github</a></p><blockquote><p>wget https://dl.gogs.io/gogs_v0.9.0_linux_386.tar.gz</p></blockquote><p>Step-three:解压Gogs二进制包([/path/]路径无要求)</p><blockquote><p>tar -xzvf gogs_v0.9.0_linux_386.tar.gz </p></blockquote><p>Step-four:进入Gogs根目录启动Gogs服务</p><blockquote><p>./gogs web</p></blockquote><p>Step-five:启动Chrome浏览器输入localhost:3000</p><p>显示配置安装即成功！记住：Gogs默认端口是3000。安装是数据库选择sqlite3并非MySQL【钧哥的沙发】</p><p>总结:执行./gogs web是为终端可见性运行的(关闭终端即关闭了gogs服务器)；</p><p>为了在终端隐藏可以这样执行</p><blockquote><p>./gogs web &amp;</p></blockquote><p>后面加上&amp;就是为了让可执行文件在后台运行，此时可以关闭终端。</p><p>停止服务命令</p><p>木有服务命令比如 sudo service apache2 start 最简单就是kill。</p><p>哈哈,谈到kill的话就很多方法了，对于这里的话，我们知道已经知道了gogs的端口为3000了，</p><p>那么我们可以通过端口号来查询该服务的进程号pid，很简单：lsof -i:[pid]</p><blockquote><p>lsof -i:3000</p></blockquote><p>此时我们已经知道gogs的进程号，那么就来kill</p><blockquote><p>kill -9 [gogs_pid]</p></blockquote><p>想想哪里觉得不对劲，不是重点谈谈Gogs吗？好了已经写了好多废话！～～～</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

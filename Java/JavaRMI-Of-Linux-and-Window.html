@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaRMI Of Linux and Window</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">JavaRMI Of Linux and Window</h1>
+        <div class="show-content">
+          <p>RMI(Remote Method Invocation，<a href="http://baike.baidu.com/view/856599.htm" target="_blank">远程</a>方法调用)是用Java在JDK1.2中实现的，它大大增强了Java开发<a href="http://baike.baidu.com/view/779017.htm" target="_blank">分布式应用</a>的能力。Java作为一种风靡一时的网络开发语言，其巨大的威力就体现在它强大的开发分布式网络应用的能力上，而RMI就是开发百分之百纯Java的网络<a href="http://baike.baidu.com/view/779017.htm" target="_blank">分布式应用</a><a href="http://baike.baidu.com/view/25302.htm" target="_blank">系统</a>的核心解决方案之一。其实它可以被看作是RPC的Java版本。但是传统RPC并不能很好地应用于<a href="http://baike.baidu.com/view/4748611.htm" target="_blank">分布式对象</a><a href="http://baike.baidu.com/view/25302.htm" target="_blank">系统</a>。而Java RMI 则支持<a href="http://baike.baidu.com/view/87682.htm" target="_blank">存储</a>于不同<a href="http://baike.baidu.com/view/1507129.htm" target="_blank">地址空间</a>的程序级对象之间彼此进行通信，实现<a href="http://baike.baidu.com/view/856599.htm" target="_blank">远程</a>对象之间的无缝远程调用。<br></p><hr><p>以下用一个最简单的示例来介绍RMI的应用<br></p><p>CircleInterface    -------服务器接口类</p><p>Circle                  -------- 服务器类 </p><p>CircleServer       ---------服务器主类</p><p>TestCircle           --------测试类</p><hr><p>packagecom.same.demo03;<br></p><p>importjava.rmi.Remote;</p><p>importjava.rmi.RemoteException;</p><p>/**</p><p>*服务器接口</p><p>* Created by alic on 16-3-7.</p><p>*/</p><p>public interfaceCircleInterfaceextendsRemote {</p><p>public doublecircleArea(Double r)throwsRemoteException;</p><p>}</p><hr><p>packagecom.same.demo03;</p><p>importjava.rmi.RemoteException;</p><p>importjava.rmi.server.UnicastRemoteObject;</p><p>/**</p><p>*服务器类</p><p>* Created by alic on 16-3-7.</p><p>*/</p><p>public classCircleextendsUnicastRemoteObjectimplementsCircleInterface {</p><p>protectedCircle()throwsRemoteException {</p><p>super();</p><p>}</p><p>@Override</p><p>public doublecircleArea(Double r)throwsRemoteException {</p><p>return3.14*r*r;</p><p>}</p><p>}</p><hr><p>packagecom.same.demo03;</p><p>importjava.net.MalformedURLException;</p><p>importjava.rmi.AlreadyBoundException;</p><p>importjava.rmi.Naming;</p><p>importjava.rmi.RemoteException;</p><p>/**</p><p>*服务器主类</p><p>* Created by alic on 16-3-7.</p><p>*/</p><p>public classCircleServer {</p><p>public static voidmain(String[] args) {</p><p>try{</p><p>Circle circle =newCircle();</p><p>//通过rmi设置并绑定服务器端口</p><p>Naming.bind("rmi://localhost:1099/circle",circle);</p><p>System.out.println("CircleServer is ok");</p><p>}catch(RemoteException e) {</p><p>e.printStackTrace();</p><p>}catch(MalformedURLExceptione) {</p><p>e.printStackTrace();</p><p>}catch(AlreadyBoundException e) {</p><p>e.printStackTrace();</p><p>}</p><p>}</p><p>}</p><hr><p>packagecom.same.demo03;</p><p>importjava.io.BufferedReader;</p><p>importjava.io.IOException;</p><p>importjava.io.InputStreamReader;</p><p>importjava.rmi.Naming;</p><p>importjava.rmi.NotBoundException;</p><p>/**</p><p>*测试类</p><p>* Created by alic on 16-3-7.</p><p>*/</p><p>public classTestCircle {</p><p>public static voidmain(String[] args)throwsIOException, NotBoundException {</p><p>//连接服务器段的emi端口</p><p>CircleInterface circleInterface = (CircleInterface) Naming.lookup("rmi://localhost:1099/circle");</p><p>System.out.println("请输入半径:");</p><p>//创建输入流</p><p>BufferedReader bufferedReader =newBufferedReader(newInputStreamReader(System.in));</p><p>//将键盘输入的转换为Double类型</p><p>Double radii = Double.parseDouble(bufferedReader.readLine());</p><p>//接收通过服务器接口访问服务器计算的结果</p><p>System.out.println(circleInterface.circleArea(radii));</p><p>}</p><p>}</p><hr><br><p>1、编写远程接口并编译   <br></p><p>2、编写实现接口的服务器类并编译</p><p>3、使用rmic编译生成stub和skeleton，命令格式：</p><blockquote><p>rmic -v1.2  服务器类名</p></blockquote><p>4、编写服务器主类并编译</p><p>5、编写客户端类并编译</p><p>6、启动注册库命令:</p><blockquote>
+<p>Window下 : start rmiregistry 1099</p>
+<p>Linux下：rmiregistry 1099</p>
+</blockquote><p>7、运行服务主类:      java  服务器主类名</p><p>8、再重新启动一个命令行窗口，运行客户类： java  客户端类名</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

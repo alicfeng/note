@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window与Linux双系统卸载Linux系统</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">Window与Linux双系统卸载Linux系统</h1>
+        <div class="show-content">
+          <p>卸载Linux系统的方法：<br></p><p>1：先下载<a href="http://pan.baidu.com/s/1qXxyYVa" target="_blank">Mbrfix</a>这个软件</p><p>2：下载之后，将其解压到你的系统目录（一般是c:\）</p><p>3：如果不在C盘，那就直接拖到C:Windows:systeam32下，用起来方便</p><p>4：打开windows命令行（开始/附件/命令行）（以管理员身份运行）或者打开的时候按住Shift+Ctrl</p><p>5:键入： cd \ [按回车] mbrfix /drive 0 fixmbr /yes [按回车]，这步是删除Grub引导程序的</p><p>6：然后重启看看，启动是不是直接就时win7</p><p>7如果是直接启动win7，那就删除Linux系统的那个盘，我的电脑——管理——磁盘管理——Linux系统所在盘，直接删除</p><p>8：如果不是重复4-6步骤，直到删除那个引导程序</p><p>一般情况下，一次就可以删除那个Grub引导程序的</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

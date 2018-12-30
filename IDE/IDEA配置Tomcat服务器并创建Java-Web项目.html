@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDEA配置Tomcat服务器并创建Java Web项目</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">IDEA配置Tomcat服务器并创建Java Web项目</h1>
+        <div class="show-content">
+          <p><b>一：创建Web项目</b><br></p><blockquote><p>Step-one:创建Web项目 File-&gt;new Project</p></blockquote><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-8dc82356a89e120b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-8dc82356a89e120b.png?imageMogr2/auto-orient/strip" data-image-slug="8dc82356a89e120b" data-width="625" data-height="654"><br><div class="image-caption"></div>
+</div><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-744f9f1582ec1a20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-744f9f1582ec1a20.png?imageMogr2/auto-orient/strip" data-image-slug="744f9f1582ec1a20" data-width="625" data-height="654"><br><div class="image-caption"></div>
+</div><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-f694b1134d38947c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-f694b1134d38947c.png?imageMogr2/auto-orient/strip" data-image-slug="f694b1134d38947c" data-width="491" data-height="394"><br><div class="image-caption"></div>
+</div><blockquote><p>Step-two:在WEB-INF目录下创建classes和lib目录 new -&gt; Directory</p></blockquote><p><br></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-41fcfd73b9cd660a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-41fcfd73b9cd660a.png?imageMogr2/auto-orient/strip" data-image-slug="41fcfd73b9cd660a" data-width="475" data-height="404"><br><div class="image-caption"></div>
+</div><blockquote><p>Step-three:进入Project Structure窗口 File-&gt;Project Structure</p></blockquote><p>.</p><blockquote><p>Step-four:点击 Modules -&gt; 选中项目“JavaWeb” -&gt; 切换到 Paths 选项卡 -&gt; 勾选 “Use module compile output path”，将 “Output path” 和 “Test output path” 都改为之前创建的classes目录</p></blockquote><p><br></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-7da1041d6eda016e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-7da1041d6eda016e.png?imageMogr2/auto-orient/strip" data-image-slug="7da1041d6eda016e" data-width="800" data-height="571"><br><div class="image-caption"></div>
+</div><blockquote><p>Step-five:点击 Modules-&gt;选中项目“JavaWeb”-&gt;切换到 Dependencies 选项卡 -&gt; 点击右边的“+”，选择 “JARs or directories”</p></blockquote><p><br></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-3a5a73cec9d80651.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-3a5a73cec9d80651.png?imageMogr2/auto-orient/strip" data-image-slug="3a5a73cec9d80651" data-width="800" data-height="490"><br><div class="image-caption"></div>
+</div><blockquote><p>Java Web项目是需要依赖 上图的JDK与Tomcat包（Servlet模块就在里面）的</p></blockquote><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-04133f40b8194170.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-04133f40b8194170.png?imageMogr2/auto-orient/strip" data-image-slug="04133f40b8194170" data-width="656" data-height="523"><br><div class="image-caption"></div>
+</div><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-664d8bb3f9a29a81.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-664d8bb3f9a29a81.png?imageMogr2/auto-orient/strip" data-image-slug="664d8bb3f9a29a81" data-width="492" data-height="531"><br><div class="image-caption"></div>
+</div><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-ad24ab83e31ebdf3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-ad24ab83e31ebdf3.png?imageMogr2/auto-orient/strip" data-image-slug="ad24ab83e31ebdf3" data-width="814" data-height="581"><br><div class="image-caption"></div>
+</div><blockquote><p>Step-six:配置打包方式Artifacts：点击 Artifacts选项卡，IDEA会为该项目自动创建一个名为“JavaWeb:war exploded”的打包方式，表示 打包成war包，并且是文件展开性的，输出路径为当前项目下的 out 文件夹，保持默认即可。另外勾选下“Build on make”，表示编译的时候就打包部署，勾选“Show content of elements”，表示显示详细的内容列表</p></blockquote><p><br></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-b6a29a0aa6544ac2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-b6a29a0aa6544ac2.png?imageMogr2/auto-orient/strip" data-image-slug="b6a29a0aa6544ac2" data-width="784" data-height="581"><br><div class="image-caption"></div>
+</div><p>其它参考详解</p><p><a href="http://www.php-note.com/article/detail/306" target="_blank">IDEA中的Facets和Artifacts的区别</a></p><p><a href="http://www.php-note.com/article/detail/605" target="_blank">Java的打包jar、war、ear包的作用与区别</a></p><p><a href="http://www.php-note.com/article/detail/848" target="_blank">IDEA 菜单项中Compile、Make和Build的区别</a></p><p><b>二：配置 Tomcat</b></p><blockquote><p>Step-seven:进入“Run Configurations”窗口 Run -&gt; Edit Configurations</p></blockquote><p>.</p><blockquote><p>Step-eight:创建一个新的Tomcat容器 点击"+"-&gt; Tomcat Server -&gt; Local</p></blockquote><p><br></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-62b606697912d884.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-62b606697912d884.png?imageMogr2/auto-orient/strip" data-image-slug="62b606697912d884" data-width="470" data-height="584"><br><div class="image-caption"></div>
+</div><blockquote><p>Step-nine:在"Name"处输入新的服务名，点击“Application server”后面的“Configure...”，弹出Tomcat Server窗口，选择本地安装的Tomcat目录 -&gt; OK</p></blockquote><p><br></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-442854a1143b57c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-442854a1143b57c1.png?imageMogr2/auto-orient/strip" data-image-slug="442854a1143b57c1" data-width="810" data-height="666"><br><div class="image-caption"></div>
+</div><blockquote><p>Step-ten:在“Run Configurations”窗口的“Server”选项板中，去掉勾选“After launch”，设置“HTTP port”和“JMX port”，点击 Apply -&gt; OK</p></blockquote><p><br></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-9acd4f635c96514d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-9acd4f635c96514d.png?imageMogr2/auto-orient/strip" data-image-slug="9acd4f635c96514d" data-width="825" data-height="666"><br><div class="image-caption"></div>
+</div><p><b>三：在 Tomcat中部署并运行项目</b></p><blockquote><p>Step-eleven:Run-&gt;Edit Configurations，进入“Run Configurations”窗口，选择之前配置好的Tomcat，点击“Deployment”选项卡，点击“+”-&gt;“Artifact”-&gt; 选择创建的web项目的Artifact</p></blockquote><p><br></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-51e90672f9b5f682.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-51e90672f9b5f682.png?imageMogr2/auto-orient/strip" data-image-slug="51e90672f9b5f682" data-width="825" data-height="666"><br><div class="image-caption"></div>
+</div><blockquote><p>Step-twelve:修改“Application context”-&gt; Apply -&gt; OK</p></blockquote><p><br></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-b9f40519a95a6d2f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-b9f40519a95a6d2f.png?imageMogr2/auto-orient/strip" data-image-slug="b9f40519a95a6d2f" data-width="810" data-height="666"><br><div class="image-caption"></div>
+</div><blockquote><p>Step-thirteen:运行Tomcat，在浏览器中查看运行结果</p></blockquote><p><br></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-c46b7e0a8b4abfb9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-c46b7e0a8b4abfb9.png?imageMogr2/auto-orient/strip" data-image-slug="c46b7e0a8b4abfb9" data-width="825" data-height="495"><br><div class="image-caption"></div>
+</div><blockquote><p>Step-fourteen:浏览器测试http//：localhost:8080/javaWeb/</p></blockquote><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-8ffa59d735ffb144.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-8ffa59d735ffb144.png?imageMogr2/auto-orient/strip" data-image-slug="8ffa59d735ffb144" data-width="469" data-height="166"><br><div class="image-caption"></div>
+</div><p>该文章修改于<a href="http://www.php-note.com/" target="_blank">php笔记</a></p><p>___</p><p><b><b><a href="https://github.com/alicance" target="_blank">价值源于技术，贡献源于分享</a></b></b><br></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

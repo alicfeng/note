@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL命令行备份数据库</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">MySQL命令行备份数据库</h1>
+        <div class="show-content">
+          <p>For instance :<br></p><p>数据库地址：127.0.0.1</p><p>数据库用户名：root</p><p>数据库密码：psd</p><p>数据库名称：samego samego_2</p><p>samego数据库下的两张表 managers_1 managers_2</p><p>备份数据库到/home/alic/MySQL/目录下</p><blockquote><p>mysqldump -h 127.0.0.1 -u root -ppsd samego &gt; /home/alic/MySQL/samego.sql</p></blockquote><p>备份MySQL数据库多个些表到/home/alic/MySQL/目录下</p><blockquote><p>mysqldump -h 127.0.0.1 -u root -ppsd samego  managers_1 managers_2 &gt; /home/alic/MySQL/samego.sql</p></blockquote><p>备份MySQL数据库为带删除表的格式，能够让该备份覆盖已有数据库而不需要手动删除原有数据库</p><blockquote><p>mysqldump --add-drop-table -h 127.0.0.1 -uroot -ppsd samego &gt; home/alic/MySQL/samego.sql</p></blockquote><p>将MySQL数据库压缩成gz备份进行备份</p><blockquote><p>mysqldump -h 127.0.0.1 -u root -ppsd samego | gzip &gt; /home/alic/WorkSpace/MySQL/samego.sql.gz</p></blockquote><p>备份多个MySQL数据库到/home/alic/MySQL/</p><blockquote><p>mysqldump -h 127.0.0.1 -u root -ppsd --databases samego samego_2 &gt; /home/alic/MySQL/samego.sql</p></blockquote><p>备份多个数据库结构，注意不包含数据</p><blockquote><p>mysqldump --no-data -h 127.0.0.1 -u root -ppsd --databases  samego samego_2 &gt; /home/alic/MySQL/samego.sql</p></blockquote><p>备份所有数据库</p><blockquote><p>mysqldump --all-databases -h 127.0.0.1 -u root -ppsd &gt; /home/alic/MySQL/allDatabases.sql</p></blockquote><p>还原MySQL数据库的命令</p><blockquote><p>mysql -h 127.0.0.1 -u root -ppsd samego &lt; /home/alic/MySQL/samego.sql</p></blockquote><p>还原压缩的MySQL数据库</p><blockquote><p>gunzip &lt; /home/alic/MySQL/samego.sql.gz | mysql -h 127.0.0.1 -u root -ppsd samego</p></blockquote><p>为了安全性问题上述的-ppsd 可以用-p替代-就是先不输入密码，enter后再输入即可！</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

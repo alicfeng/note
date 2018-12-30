@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySQL之ALTER</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">MySQL之ALTER</h1>
+        <div class="show-content">
+          <p>1：删除列<br></p><p>ALTER TABLE 【表名字】 DROP 【列名称】</p><p>2：增加列</p><p>ALTER TABLE 【表名字】 ADD 【列名称】 INT NOT NULL  COMMENT '注释说明'</p><p>3：修改列的类型信息</p><p>ALTER TABLE 【表名字】 CHANGE 【列名称】【新列名称（这里可以用和原来列同名即可）】 BIGINT NOT NULL  COMMENT '注释说明'</p><p>4：重命名列</p><p>ALTER TABLE 【表名字】 CHANGE 【列名称】【新列名称】 BIGINT NOT NULL  COMMENT '注释说明'</p><p>5：重命名表</p><p>ALTER TABLE 【表名字】 RENAME 【表新名字】</p><p>6：删除表中主键</p><p>Alter TABLE 【表名字】 drop primary key</p><p>7：添加主键</p><p>ALTER TABLE 【表名字】 ADD CONSTRAINT 【表主键约束的名字】 PRIMARY KEY (列名称)</p><p>8：添加索引</p><p>ALTER TABLE sj_resource_charges add index INDEX_NAME (name);</p><p>9: 添加唯一限制条件索引</p><p>ALTER TABLE sj_resource_charges add unique emp_name2(cardnumber);</p><p>10: 删除索引</p><p>alter table tablename drop index emp_name;</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

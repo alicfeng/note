@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>既搞笑又高效的日常shell的脚本</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">既搞笑又高效的日常shell的脚本</h1>
+        <div class="show-content">
+          <p>背景：在使用linux的时候，打开终端输入命令是最常做的事，时间长了基本积累有挺多的shell脚本文件，即便文件目录管理及其方便，</p><p>But每一个文件独立开执行始终是一件苦逼的事情。然而我就花了苦逼的时间来玩一个常用的shell【将零散的shell部件组装自己喜欢的福特ford】。</p><hr><p>一个可执行shell.sh脚本以及其它配置文件【福特部件】</p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-81d0affb90358839.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-81d0affb90358839.png?imageMogr2/auto-orient/strip" data-image-slug="81d0affb90358839" data-width="547" data-height="114"><br><div class="image-caption"></div>
+</div><p><br></p><hr><p>欣赏一下在终端执行的效果【ford是一款外表出色兼内件至稳的小汽】</p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-58b170b758dddec4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-58b170b758dddec4.png?imageMogr2/auto-orient/strip" data-image-slug="58b170b758dddec4" data-width="1187" data-height="667"><br><div class="image-caption"></div>
+</div><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-d4cddaf63280c716.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-d4cddaf63280c716.png?imageMogr2/auto-orient/strip" data-image-slug="d4cddaf63280c716" data-width="1184" data-height="462"><br><div class="image-caption"></div>
+</div><hr><p>2016.03.28已经更新加入此功能：一键部署Apache+MySQL+Php环境【已经成功测试过】</p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-7f1b575342073b65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-7f1b575342073b65.png?imageMogr2/auto-orient/strip" data-image-slug="7f1b575342073b65" data-width="779" data-height="276"><br><div class="image-caption"></div>
+</div><hr><p>2016.03.28距离上一次更新不足十分钟，其实就是简单配置以前的脚本。这次的更新是针对ElementoryOS系统的【基于Ubuntu的最美发行版】</p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-f929951411492817.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-f929951411492817.png?imageMogr2/auto-orient/strip" data-image-slug="f929951411492817" data-width="1036" data-height="292"><br><div class="image-caption"></div>
+</div><hr><p>2016.03.30 这次添加备份学习的工作空间【快速备份】linux对大文件流的处理还是不怎么友好，因为我不想在界面看到复制文件的进度条，强迫症在终端后台运行。有时候ssh连接服务器的时候，LongLong命令，然而干脆封装了。</p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-d81dac5cf5c40695.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-d81dac5cf5c40695.png?imageMogr2/auto-orient/strip" data-image-slug="d81dac5cf5c40695" data-width="1341" data-height="564"><br><div class="image-caption"></div>
+</div><hr><p>2016.04.09没什么重要的，添加了Weather查看-日常生活所需</p><blockquote><p>curl wttr.in/[-localtion]   #-localtion为你查询的地方</p></blockquote><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-40b5f099a705a355.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-40b5f099a705a355.png?imageMogr2/auto-orient/strip" data-image-slug="40b5f099a705a355" data-width="1144" data-height="698"><br><div class="image-caption"></div>
+</div><p><a href="http://pan.baidu.com/s/1bpsLPtP" target="_blank">分享啦</a>。待续～～<br></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

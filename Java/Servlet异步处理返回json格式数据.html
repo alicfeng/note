@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servlet异步处理返回json格式数据</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">Servlet异步处理返回json格式数据</h1>
+        <div class="show-content">
+          <p>前言：json是一种轻量级的数据交换格式，只是阅读的效果没有xml那么舒服，但是独立于语言和平台，对于返回数据的需要时，json是最适合不过了。</p><hr><p>【异步处理】：对于php语言来讲，可以直接使用echo输出json数据。使用json_decode函数来转换。</p><p>对于java语言来讲，她也许会比较complex一点，那就详细来记录一下【实例为-servlet异步返回json，以及jquery解析json数据】：</p><hr><p><b>Step-one：引入<a href="http://pan.baidu.com/s/1c1MWhMw" target="_blank">gson-2.2.4.jar</a>[google官方已经封装好的json数据处理类，需要实体序列化]</b></p><p><br></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-c8388ca84871c905.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-c8388ca84871c905.png?imageMogr2/auto-orient/strip" data-image-slug="c8388ca84871c905" data-width="359" data-height="64"><br><div class="image-caption"></div>
+</div><p><b>Step-two：创建需要转换某个实体类</b></p><p><br></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-75386cd1d176e98d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-75386cd1d176e98d.png?imageMogr2/auto-orient/strip" data-image-slug="75386cd1d176e98d" data-width="835" data-height="343"><br><div class="image-caption"></div>
+</div><p><b>Step-three：在Servlet类将ArrayList(T)泛型集合转换成json数据【核心处理】</b></p><p><br></p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-051133c419736208.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-051133c419736208.png?imageMogr2/auto-orient/strip" data-image-slug="051133c419736208" data-width="1593" data-height="747"><br><div class="image-caption"></div>
+</div><p>/**</p><p>*author alic</p><p>* Created by alic on 16-3-29.</p><p>*/</p><p>public  class  TestServlet  extends  HttpServlet {</p><p>protected  void  doPost(HttpServletRequest  request , HttpServletResponse response)throwsServletException,IOException {</p><p>doGet(request,response);</p><p>}</p><p>protected  void  doGet(HttpServletRequest  request,HttpServletResponse response) throws  ServletException,IOException {</p><p>//依然是编码设置 还是要注意 要在建立流前设置</p><p>response.setContentType("text/json; charset=UTF-8");</p><p>request.setCharacterEncoding("UTF-8");</p><p>response.setCharacterEncoding("UTF-8");</p><p>StudentDao  studentDao =new  StudentDao();</p><p>ArrayList students = studentDao.getAllStudentMessage();</p><p>//json数据处理</p><p>Gson gson =newGson();</p><p>String result = gson.toJson(students);</p><p>PrintWriter printWriter = response.getWriter();</p><p>printWriter.print(result);</p><p>request.setCharacterEncoding("UTF-8");</p><p>}</p><p>}</p><p><b>Step-four：jquery解析json数据【异步访问并实现回调方法】</b></p><blockquote><p>$.getJSON("ServletURL",{<i>parameter</i>},function(data) {}<br></p></blockquote><p>注意：Gson实例化的对象是实体类的Object去序列化的，因此返回数据的json的key值与java定义的实体类属性名一致的。</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

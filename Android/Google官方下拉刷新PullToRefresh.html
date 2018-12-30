@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google官方下拉刷新PullToRefresh</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">Google官方下拉刷新PullToRefresh</h1>
+        <div class="show-content">
+          <p>网上关于下拉刷新的文章也不少，但是依赖的库文件太重了。恰好发现了官方的下拉刷新库，而且效果还是不错的：简洁美观，使用方便。<br></p><p>这是最基本的下拉刷新例子-可扩展</p><p>看图啦</p><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-1fd7ecddf449fa8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-1fd7ecddf449fa8c.png?imageMogr2/auto-orient/strip" data-image-slug="1fd7ecddf449fa8c" data-width="1073" data-height="666"><br><div class="image-caption"></div>
+</div><div class="image-package">
+<img src="http://upload-images.jianshu.io/upload_images/1678789-a29edba7cd04c085.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1678789-a29edba7cd04c085.png?imageMogr2/auto-orient/strip" data-image-slug="a29edba7cd04c085" data-width="1073" data-height="666"><br><div class="image-caption"></div>
+</div><h2><b>Step-one:下拉刷新布局文件﻿</b></h2><p>&lt;?﻿﻿xml version="1.0"encoding="utf-8"?&gt;</p><p>&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"<br></p><p>android:layout_width="match_parent"&gt;</p><p>&lt;android.support.v4.widget.SwipeRefreshLayout<br></p><p>android:id="@+id/swipeRefreshLayout"</p><p>android:layout_width="match_parent"</p><p>android:layout_height="match_parent"&gt;</p><p>&lt;ListView<br></p><p>android:id="@+id/listView"</p><p>android:layout_width="match_parent"</p><p>android:layout_height="match_parent"&gt;</p><p>&lt;/ListView&gt;</p><p>&lt;android.support.v4.widget.SwipeRefreshLayout&gt;<br></p><p>&lt;/RelativeLayout&gt;</p><hr><h2><b>Step-two:java处理文件</b></h2><p>packagecom.samego.alic.purgepulltorefresh;<br></p><p>importandroid.os.Bundle;</p><p>importandroid.os.Handler;</p><p>importandroid.os.Message;</p><p>importandroid.support.v4.widget.SwipeRefreshLayout;</p><p>importandroid.support.v7.app.AppCompatActivity;</p><p>importandroid.support.v7.widget.Toolbar;</p><p>importandroid.widget.ArrayAdapter;</p><p>importandroid.widget.ListView;</p><p>public classMainActivityextendsAppCompatActivity {</p><p>privateSwipeRefreshLayoutmSwipeLayout;</p><p>privateListViewlistView;</p><p>privateArrayAdapteradapter;</p><p>@Override</p><p>protected voidonCreate(Bundle savedInstanceState) {</p><p>super.onCreate(savedInstanceState);</p><p>setContentView(R.layout.content_main);</p><p>Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);</p><p>setSupportActionBar(toolbar);</p><p>//实例化刷新布局</p><p>mSwipeLayout= (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);</p><p>//listView主内容</p><p>listView= (ListView) findViewById(R.id.listView);</p><p>adapter=newArrayAdapter(this,android.R.layout.simple_list_item_1);</p><p>adapter.add("Alic-one");</p><p>adapter.add("Alic-two");</p><p>adapter.add("Alic-three");</p><p>listView.setAdapter(adapter);</p><p>//设置刷新时动画的颜色，可以设置4个</p><p>mSwipeLayout.setColorSchemeResources(android.R.color.holo_blue_light,android.R.color.holo_red_light,android.R.color.holo_orange_light,android.R.color.holo_green_light);</p><p>//handler用来更新UI的 注意需要定义自己的Handler类-防泄露</p><p>finalHandler handler =newHandler(){</p><p>@Override</p><p>public voidhandleMessage(Message msg) {</p><p>//TODO</p><p>adapter.add("Alic-Refresh");</p><p>super.handleMessage(msg);</p><p>//取消更新的动画</p><p>mSwipeLayout.setRefreshing(false);</p><p>}</p><p>};</p><p>//设置监听器</p><p>mSwipeLayout.setOnRefreshListener(newSwipeRefreshLayout.OnRefreshListener() {</p><p>@Override</p><p>//正在更新的时候执行什么代码</p><p>public voidonRefresh() {</p><p>newThread(newRunnable() {</p><p>@Override</p><p>public voidrun() {</p><p>//模拟在服务器获取数据等待一秒</p><p>try{</p><p>Thread.sleep(1000);</p><p>}catch(InterruptedException e) {</p><p>e.printStackTrace();</p><p>}</p><p>//发消息给handler更新UI</p><p>Message message =newMessage();</p><p>handler.sendMessage(message);</p><p>}</p><p>}).start();</p><p>}</p><p>});</p><p>}</p><p>}</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

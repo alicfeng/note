@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git的常用命令</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">Git的常用命令</h1>
+        <div class="show-content">
+          <p>准备事项为本地创建一个git仓库。</p><p>从远程数据库克隆数据</p><blockquote><p>git clone &lt;仓库代码的http链接&gt;</p></blockquote><p>执行status命令以确认tutorial目录的状态。<br></p><blockquote><p>git status</p></blockquote><p>将文件加入到索引，要使用add命令。在指定加入索引的文件。用空格分割可以指定多个文件。<br></p><blockquote><p>git add &lt;file&gt;</p></blockquote><p>指定参数「.」，可以把所有的文件加入到索引<br></p><blockquote><p>git add .</p></blockquote><p>既然文件已加入到索引，我们就可以提交文件了。请执行如下显示的commit命令。<br></p><blockquote><p>git commit -m "更新文件的说明"</p></blockquote><p>将文件推送到远程分支数据库</p><blockquote><p>git push origin master</p></blockquote>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
