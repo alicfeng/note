@@ -6,9 +6,9 @@
 
 教育背景：**本科 · 软件工程系**
 
-联系方式：** **:email: a@samego.com**
+联系方式：**:email: a@samego.com**
 
-我的博客：**[www.samego.com](www.samego.com)** | **[https://github.com/alicfeng](https://github.com/alicfeng)**
+我的博客：**[www.samego.com](www.samego.com)** | **[github.com/alicfeng](https://github.com/alicfeng)**
 
 
 
@@ -113,24 +113,7 @@ ___
 
 
 
-## 大学历程
-
-> 大学历程编程之路
-
-
-
-```flow
-start=>start: 踏进象牙塔
-end=>end: 圆满大学生涯
-larning=>operation: 专注技术研究，参与诸多赛项并获奖
-teching=>operation: 建立外包项目团队，担任团队负责人
-writing=>operation: 联合创作《容器云运维实战:docker与kubernetes》一书
-cond=>condition: 是否
-
-start->larning->teching->writing->end
-```
-
-**外包项目**
+## 在校外包项目
 
 - 旅社管理中心平台
 
