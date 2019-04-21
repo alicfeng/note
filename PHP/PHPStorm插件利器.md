@@ -1,0 +1,15 @@
+- .env files supoort
+- .ignore
+- ANSI Highlighter
+- BashSupport
+- CodeGlance
+- Database Navigator
+- EditorConfig
+- Handlebars/Mustanche
+- Laravel Plugin
+- Larave Snippets
+- LaravelStorm
+- PHP composer.json support
+- PlantUML intergration
+- Translation
+- Blade Support
