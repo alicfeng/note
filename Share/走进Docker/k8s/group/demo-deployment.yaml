@@ -1,0 +1,18 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: demo-deployment
+  labels:
+    app: k8s-demo # 必须与 service 中的 spec.selector.app 保持一致
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: k8s-demo
+    spec:
+      containers:
+        - name: demo-k8s
+          image: alicfeng/k8s_app:v2.0
+          ports:
+            - containerPort: 80

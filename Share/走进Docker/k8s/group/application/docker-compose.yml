@@ -1,0 +1,8 @@
+version: "2"
+services:
+  share:
+    container_name: k8s_app
+    image: alicfeng/k8s_app:v1.0
+    ports:
+      - 9988:80
+    restart: always
