@@ -1,30 +1,47 @@
-**前言**
+---
+title: 初窥Go轻量级框架beego
+date: 2016-09-17
+tags:
+  - beego
+categories: Go
+---
+
+
+
+#### 前言
+
 初窥Go轻量级框架beego
+
+<!-- more -->
+
 - 基于Go语言的轻量级Web框架
 - 国人开发的优秀框架
 - 稳定可靠、社区氛围好、作者负责、值得推荐
 - 一个值得研究的框架 世界第二个值得我学习的Web框架
 ___
-**测试环境**
+#### 测试环境
+
 - ubuntu 14.04 32-OS
 - Go 1.6+[Go语言的安装与配置](http://www.jianshu.com/p/43835e23f195)
 -  $GOPATH  ➜ /home/alic/WorkSpace/GoWeb
 ___
-**安装说明**
+#### 安装说明
+
 安装beego框架
-~~~
+
+~~~shell
 $go get github.com/astaxie/beego
 ~~~
 安装bee框架工具
-~~~
+~~~shell
 go get github.com/beego/bee
 ~~~
 将bee添加到环境变量
-~~~
+~~~shell
 export PATH=$PATH:/home/alic/WorkSpace/GoWeb/bin
 ~~~
 以上执行没有问题的话，那么beego环境搭建已经okay啦！可以创建helloWorld测试环境
-~~~
+~~~shell
 # 建立helloWorld程序
 $bee new helloWorld
 
@@ -35,7 +52,7 @@ $bee run helloWorld
 ![no space left on device](http://upload-images.jianshu.io/upload_images/1678789-37356c14a29721cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 解决方案：
 [参照markjour](http://www.markjour.com/article/cannot-add-inotify-watch.html)
-~~~
+~~~shell
 # 编辑 /etc/sysctl.conf
 vim /etc/sysctl.conf
 

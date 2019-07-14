@@ -1,4 +1,19 @@
-前言：在开发安卓移动端时，几乎每一个app都需要连接网络，因此，对设备的网络状态检测是很有必要的！比如：检测当前网络是否可用，当前可用的网络是属于WIFI还是MOBILE等等。
+---
+title: Android获取网络状态
+date: 2016-04-09
+tags:
+  - network
+categories: Android
+---
+
+
+
+#### 前言
+
+在开发安卓移动端时，几乎每一个app都需要连接网络，因此，对设备的网络状态检测是很有必要的！比如：检测当前网络是否可用，当前可用的网络是属于WIFI还是MOBILE等等。
+
+<!-- more -->
+
 ___
 **实现步骤流程：**
 1 .获取ConnectivityManager对象
@@ -176,96 +191,96 @@ public static final int NETWORK_TYPE_UNKNOWN
 Network type is unknown
 Constant Value: 0 (0x00000000)
 (不知道网络类型)
- ```
+```
 ```
 public static final int NETWORK_TYPE_GPRS
 Current network is GPRS
 Constant Value: 1 (0x00000001)
 (2.5G）移动和联通
-  ```
+```
 ```
 public static final int NETWORK_TYPE_EDGE
 Current network is EDGE
 Constant Value: 2 (0x00000002)
 (2.75G)2.5G到3G的过渡    移动和联通
-  ```
+```
 ```
 public static final int NETWORK_TYPE_UMTS
 Current network is UMTS
 Constant Value: 3 (0x00000003)
 (3G)联通
-  ```
+```
 **Added in API level 4**
 ```
 public static final int NETWORK_TYPE_CDMA
 Current network is CDMA: Either IS95A or IS95B
 Constant Value: 4 (0x00000004)
 (2G 电信)
-  ```
+```
 ```
 public static final int NETWORK_TYPE_EVDO_0
 Current network is EVDO revision 0
 Constant Value: 5 (0x00000005)
 ( 3G )电信
-  ```
+```
 ```
 public static final int NETWORK_TYPE_EVDO_A
 Current network is EVDO revision A
 Constant Value: 6 (0x00000006)
 (3.5G) 属于3G过渡
-  ```
+```
 ```
 public static final int NETWORK_TYPE_1xRTT
 Current network is 1xRTT
 Constant Value: 7 (0x00000007)
 ( 2G )
-  ```
+```
 **Added in API level 5**
 ```
 public static final int NETWORK_TYPE_HSDPA
 Current network is HSDPA
 Constant Value: 8 (0x00000008)
 (3.5G )
-  ```
+```
 ```
 public static final int NETWORK_TYPE_HSUPA
 Current network is HSUPA
 Constant Value: 9 (0x00000009)
 ( 3.5G )
-  ```
+```
 ```
 public static final int NETWORK_TYPE_HSPA
 Current network is HSPA
 Constant Value: 10 (0x0000000a)
 ( 3G )联通
-  ```
+```
 **Added in API level 8**
 ```
 public static final int NETWORK_TYPE_IDEN
 Current network is iDen
 Constant Value: 11 (0x0000000b)
 (2G )
- ```
+```
 **Added in API level 9**
 ```
 public static final int NETWORK_TYPE_EVDO_B
 Current network is EVDO revision B
 Constant Value: 12 (0x0000000c)
 3G-3.5G
- ```
+```
 **Added in API level 11**
 ```
 public static final int NETWORK_TYPE_LTE
 Current network is LTE
 Constant Value: 13 (0x0000000d)
 (4G)
- ```
+```
 ```
 public static final int NETWORK_TYPE_EHRPD
 Current network is eHRPD
 Constant Value: 14 (0x0000000e)
 3G(3G到4G的升级产物)
- ```
+```
 **Added in API level 13**
 ```
 public static final int NETWORK_TYPE_HSPAP

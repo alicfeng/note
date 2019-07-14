@@ -1,14 +1,26 @@
+---
+title: vue构建环境切换脚本
+date: 2019-04-23
+tags:
+  - Vue
+  - Node
+  - Javascript
+categories: Web
+---
+
+
+
 #### 前言
 
 在项目开发一直到上线的过程中，我们一般会配置至少三个环境( 开发环境`dev`、测试环境`test`、生产环境`prod` ) ，多则还有`sit`、`uat`等环境，不同的环境其配置也是不一样的，比如接口地址、路由模式等配置，如何更加优雅灵活地切换环境呢？我们可以配合`cross-env`，构建不同的`cli build script`。
 
-
+<!-- more -->
 
 #### 使用
 
 - 安装`cross-env`依赖
 
-  ```shell
+  ```bash
   npm install cross-env --save
   ```
 
@@ -98,10 +110,12 @@
 - 在`package.json`配置文件里声明并自定义构建指令
 
   ```json
-    "scripts": {
+  {  
+  "scripts": {
       "build-test": "cross-env NODE_ENV=testing env_config=test node build/build.js",
       "build-prod": "cross-env NODE_ENV=production env_config=prod node build/build.js"
-    },
+    }
+  }
   ```
 
   
@@ -128,4 +142,3 @@
   npm run build-prod
   ```
 
-  

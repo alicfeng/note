@@ -1,16 +1,20 @@
-**前言**
+#### 前言
 无论是做开发还是做运维的程序猿，crontab命令是必须用到的命令，特别是对于运维的人，自动化运维中，crontab也属于其一。然而就来记录常用的crontab定时处理命令。
+
 ___
-**crontab简介**
+#### crontab简介
 简而言之呢，crontab就是一个自定义定时器。
+
 ___
-**crontab配置文件**
+#### crontab配置文件
+
 - 其一：`/var/spool/cron/`
  该目录下存放的是每个用户（包括root）的crontab任务，文件名以用户名命名
 - 其二：`/etc/cron.d/ `
 这个目录用来存放任何要执行的crontab文件或脚本。
 ___
-**crontab时间说明**
+#### crontab时间说明
+
 ~~~
 # .---------------- minute (0 - 59) 
 # |  .------------- hour (0 - 23)
@@ -29,7 +33,8 @@ wday：代表星期几，范围 0-7 (0及7都是星期天)。
 who：要使用什么身份执行该指令，当您使用 crontab -e 时，不必加此字段。
 command：所要执行的指令。
 ___
-**crontab服务状态**
+#### crontab服务状态
+
 ~~~
 sudo service crond start     #启动服务
 sudo service crond stop      #关闭服务
@@ -38,8 +43,9 @@ sudo service crond reload    #重新载入配置
 sudo service crond status    #查看服务状态
 ~~~
 ___
-**crontab命令**
+#### crontab命令
 重新指定crontab定时任务列表文件
+
 ```shell
 crontab $filepath
 ```
@@ -56,8 +62,10 @@ Step-One : 编辑任务脚本【分目录存放】【ex: backup.sh】
 Step-Two : 编辑定时文件【命名规则:backup.cron】
 Step-Three : crontab命令添加到系统`crontab backup.cron `
 Step-Four : 查看crontab列表 `crontab -l`
+
 ___
-**crontab时间举例**
+#### crontab时间举例
+
 ~~~
 # 每天早上6点 
 0 6 * * * echo "Good morning." >> /tmp/test.txt //注意单纯echo，从屏幕上看不到任何输出，因为cron把任何输出都email到root的信箱了。
@@ -104,11 +112,30 @@ ___
 203 * * * （/bin/rm -f expire.ls logins.bad;bin/expire$#@62;expire.1st）　
 ~~~
 ___
+
+
+#### 高级用法
+
+- timeout | 避免脚本僵死导致后面的命令无法被执行
+
+  ```shell
+  * * * * * timeout 60 /usr/local/bin/php /home/alicfeng/ms/email.php
+  ```
+
+- flock | 使用 flock 进行互斥控制，避免重复被执行
+
+  ```shell
+  * * * * * flock -xn /tmp/cron_email.lock -c "timeout 60 /usr/local/bin/php /home/alicfeng/email.php >> /home/log/test.log 2>&1" 
+  ```
+
+
+
 Linux运维基础且常用命令
 [Linux之crontab定时任务](http://www.jianshu.com/p/838db0269fd0)
 [Linux之sed文本处理命令](http://www.jianshu.com/p/8269c36331ee)
 [Linux之ps进程查看命令](http://www.jianshu.com/p/367276be1469)
 [Linux之expect交互语言命令](http://www.jianshu.com/p/59f2e14e2535)
 [Linux之tail命令](http://www.jianshu.com/p/168e8a01c2e2)
+
 ___
 **[价值源于技术，贡献源于分享](https://github.com/alicfeng)**

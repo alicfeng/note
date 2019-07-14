@@ -1,0 +1,82 @@
+pipeline:
+  # 应用构建缓存 | 加载缓存
+  restore-cache:
+    image: drillster/drone-volume-cache
+    restore: true
+    mount:
+      - ./vendor
+    volumes:
+      # Mount the cache volume, needs "Trusted" | https://docs.drone.io/administration/user/admins/
+      # DRONE_USER_CREATE=username:{alicfeng},admin:true
+      # source path {/tmp/cache/composer need to mkdir on server}
+      - /tmp/cache/composer:/cache
+
+  # 构建测试
+  build-tests:
+    image: lorisleiva/laravel-docker:7.3
+    commands:
+      - mv $(pwd)/.env.drone $(pwd)/.env
+      - composer install -vvv
+      - ./vendor/phpunit/phpunit/phpunit
+
+  # 构建应用缓存 | 重新缓存
+  rebuild-cache:
+    image: drillster/drone-volume-cache
+    rebuild: true
+    mount:
+      - ./vendor
+    volumes:
+      - /tmp/cache/composer:/cache
+
+  # 测试环境部署
+  test-deploy:
+    image: appleboy/drone-ssh
+    host: 192.168.2.1
+    username: alicfeng
+    password: fenglican
+    port: 22
+    command_timeout: 30000s
+    script:
+      - cd /Users/alicfeng/tutorial/github/alicfeng/note.samego.com/Share/走进Docker/tutorial/demo_test
+      - git pull
+      - php artisan config:cache
+      - php artisan route:cache
+      - php artisan optimize
+    when:
+      branch:
+        - test
+
+  # 生产环境部署
+  prod-deploy:
+    image: appleboy/drone-ssh
+    host: 192.168.2.1
+    username: alicfeng
+    password: fenglican
+    port: 22
+    command_timeout: 300s
+    script:
+      # prod env deploy shell script list
+      - cd /Users/alicfeng/tutorial/github/alicfeng/note.samego.com/Share/走进Docker/tutorial/demo_prod
+      - git pull
+      - php artisan config:cache
+      - php artisan route:cache
+      - php artisan optimize
+    when:
+      event:
+        - push
+      branch:
+        - master
+
+  # 邮件通知推送
+  mail-notify:
+    image: drillster/drone-email
+    from: 18814129510@163.com
+    host: smtp.163.com
+    username: 18814129510@163.com
+    password: fenglican88
+    port: 465
+    subject: CICD notify
+    recipients:
+      - alic@samego.com
+    when:
+      status: [ failure,success ]
