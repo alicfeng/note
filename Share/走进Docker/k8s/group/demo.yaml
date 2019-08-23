@@ -1,0 +1,18 @@
+# by www.bejson.com 
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: k8s-demo
+  labels: {app: app-service}
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels: {app: app-service}
+    spec:
+      containers:
+      - name: k8s-demo
+        image: alicfeng/k8s_app:v2.0
+        ports:
+        - {containerPort: 80}
+

@@ -1,15 +1,18 @@
 ## MySQL社区开发规范
 
-## 命名规范
+#### 命名规范
 
 - **对象名称必须使用小写，多单词统一使用下划线分割**
+
 - **命名的单词必须做到顾名思义、简洁，表名长度不要超过16个字符，字段名称长度不要超过32个字符**
+
 - **禁止使用保留字并且尽量少用含有关键词来命名**
+
 - **临时表必须以`tmp_`开头、以日期结尾，备份表必须以`bak_`开头、以日期结尾**
 
 
 
-## 基础规范
+#### 基础规范
 
 - **尽可能地使用`InnoDB`作为表的存储引擎**
 
@@ -37,7 +40,7 @@
 
 
 
-## 行为与流程规范
+#### 行为与流程规范
 
 - **禁止在线上做数据库的压力测试**
 
@@ -65,7 +68,7 @@
 
 
 
-## 表设计规范
+#### 表设计规范
 
 - **尽可能每张表的索引数量控制在5个以内**
 
@@ -99,7 +102,7 @@
 
 
 
-##　字段设计规范
+#### 字段设计规范
 
 - **尽可能不要在表中建立顾名思义的扩展字段**
 
@@ -153,7 +156,7 @@
 
 
 
-## 索引规范
+#### 索引规范
 
 - **重要的`SQL`语句必须带上索引作为条件**
 
@@ -179,7 +182,7 @@
 
 
 
-## SQL使用规范
+#### SQL使用规范
 
 - **危险的`SQL`语句必须带上索引作为条件，谨记谨记**
 
@@ -230,11 +233,11 @@
   可以灵活地合并 `SQL` 操作，降低`IO`消耗的同时也提高了执行效率，譬如
 
   ```mysql
-  UPDATE user SET username='alicfeng' FROM id=1995;
-  UPDATE user SET age=23 FROM id=1995;
+  UPDATE `user` SET username='alicfeng' WHERE id=1995;
+  UPDATE `user` SET age=23 WHERE id=1995;
   
   # 合并操作成一条SQL
-  UPDATE user SET username='alicfeng',age=23 FROM id=1995;
+  UPDATE user SET username='alicfeng',age=23 WHERE id=1995;
   ```
 
 - **尽可能使用`IN`代替`OR`语句**
@@ -249,9 +252,9 @@
 
   ```mysql
   # 索引会失效
-  WHERE DATE(create_date)='20190308';
+  SELECT `name` FROM `table` WHERE DATE(create_date)='20190308';
   # 灵活使用[推荐]
-  WHERE create_date>='20190308' AND create_date<'20190309';
+  SELECT `name` FROM `table` WHERE create_date>='20190308' AND create_date<'20190309';
   ```
 
 - **使用`UNION ALL`而不是使用`UNION`**

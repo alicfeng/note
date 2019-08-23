@@ -1,0 +1,83 @@
+{
+  "author": "AlicFeng <a@samego.com>",
+  "title": "TeamStandard",
+  "description": "TeamStandard For Team Development",
+  "extension": null,
+  "generator": "site",
+  "language": "zh-hans",
+  "root": ".",
+  "structure": {
+    "readme": "README.md"
+  },
+  "links": {
+    "sharing": {
+      "all": null,
+      "facebook": null,
+      "google": null,
+      "twitter": null,
+      "weibo": null
+    },
+    "sidebar": {
+      "TeamStandard": "https://www.github.com/alicfeng/TeamStandard"
+    }
+  },
+  "output": null,
+  "pdf": {
+    "fontSize": 12,
+    "footerTemplate": null,
+    "headerTemplate": null,
+    "margin": {
+      "bottom": 36,
+      "left": 62,
+      "right": 62,
+      "top": 36
+    },
+    "pageNumbers": false,
+    "paperSize": "a4"
+  },
+  "plugins": [
+    "back-to-top-button",
+    "tbfed-pagefooter",
+    "-sharing",
+    "sharing-plus",
+    "local-video",
+    "prism-themes",
+    "toggle-chapters",
+    "katex",
+    "-lunr",
+    "-search",
+    "search-plus",
+    "mermaid-gb3",
+    "puml",
+    "advanced-emoji",
+    "chart",
+    "todo",
+    "alerts",
+    "theme-comscore"
+  ],
+  "variables": {},
+  "pluginsConfig": {
+    "theme-default": {
+      "showLevel": false
+    },
+    "tbfed-pagefooter": {
+      "copyright": "Copyright © SameGo 2019",
+      "modify_label": "文件修改时间于 ",
+      "modify_format": "YYYY-MM-DD HH:mm:ss"
+    },
+    "github-buttons": {
+      "repo": "alicfeng/TeamStandard",
+      "types": [
+        "star",
+        "watch",
+        "fork"
+      ],
+      "size": "small"
+    },
+    "prism": {
+      "css": [
+        "prism-themes/themes/prism-base16-ateliersulphurpool.light.css"
+      ]
+    }
+  }
+}

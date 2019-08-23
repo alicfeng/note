@@ -27,4 +27,6 @@ sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
 && chmod -R a+w /var/log \
 && rm -rf /tmp/* /var/cache/apk/*
 
+EXPOSE 80
+
 CMD ["/start.sh"]
