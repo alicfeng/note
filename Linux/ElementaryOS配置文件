@@ -1,0 +1,306 @@
+
+ElementaryOS安装后的配置记录
+首先卸载预装
+邮件应用 geary
+相机 snap-photobooth
+浏览器 midori
+日历 maya-calendar
+应用名称可以到applicattions文件夹下查看
+
+◾purge-all
+sudo apt-get purge  midori* maya-calendar geary simple-scan snap-photobooth
+
+◾install-all
+sudo apt-get install x11vnc       --vnc远程协议 
+
+
+◾先安装fire再安装chrome；防止提示系统无法读取。。。。。什么鬼信息
+sudo apt-get install firefox                --火狐浏览器
+sudo apt-get install google-chrome-stable   --google浏览器
+记得给phpstorm文件夹全部权限
+
+
+◾安装Tweaks：设置组件
+sudo apt-add-repository ppa:mpstark/elementary-tweaks-daily
+sudo apt-get update
+sudo apt-get install elementary-tweaks
+安装完成删掉该源，据说这源有风险
+sudo add-apt-repository -r ppa:elementary-os/daily
+Loki:
+sudo add-apt-repository ppa:philip.scott/elementary-tweaks && sudo apt-get update
+sudo apt-get install elementary-tweaks
+
+
+◾安装Gparted：分区软件
+sudo apt-get install gparted
+
+
+◾安装SqliteMan：SQLiite3可视化工具
+sudo apt-get install sqliteman
+
+
+◾安装前端开发工具:Bracket
+sudo add-apt-repository ppa:webupd8team/brackets
+sudo apt-get update
+sudo apt-get install brackets
+sudo add-apt-repository -r ppa:webupd8team/brackets
+
+◾安装Vim：
+sudo apt-get install vim
+安装C++：
+sudo apt-get install monodevelop 
+sudo apt-get install g++
+sudo apt-get install xterm (linux下的win终端模拟器->控制台)
+
+◾安装Gcolor2：
+sudo apt-get install gcolor2
+
+◾针对笔记本，安装 TLP 以延长电池寿命，减少发热 32位就不装了，可能影响wingpanel图标
+sudo add-apt-repository ppa:linrunner/tlp
+sudo apt-get update
+sudo apt-get install tlp tlp-rdw
+sudo tlp start
+
+
+
+
+◾配置Scratch的桌面文件，以便能够使用中文输入法：
+原来的样子：
+Exec=scratch-text-editor %U
+X-GNOME-Gettext-Domain=scratch-text-editor
+
+Exec=env GTK_IM_MODULE=xim scratch-text-editor %U
+X-GNOME-Gettext-Domain=env GTK_IM_MODULE=xim scratch-text-editor
+
+
+◾卸载原来的输入法，安装fcitx：
+sudo apt-get remove ibus
+sudo add-apt-repository ppa:fcitx-team/nightly
+sudo apt-get update
+sudo apt-get install –no-install-recommends fcitx fcitx-config-gtk
+安装后记得配置默认输入法以及剪切板的功能。
+
+google拼音
+sudo apt-get install fcitx-googlepinyin
+突然搜狗拼音就出问题不能用了
+[Gtk/IMModule....
+解决方案
+sudo vim /usr/share/glib-2.0/schemas/50_sogoupinyin.gschema.override
+注释那一行
+
+◾设置默认开启小键盘：e
+sudo scratch-text-editor /etc/lightdm/lightdm.conf
+greeter-setup-script=/usr/bin/numlockx on
+
+
+◾gif图片录制工具silentcast
+sudo add-apt-repository ppa:sethj/silentcast
+sudo apt-get update
+sudo apt-get install silentcast
+
+
+◾卸载gnome-keyring组件：
+sudo apt-get autoremove gnome-keyring
+
+◾安装elementaryplus：
+sudo add-apt-repository ppa:cybre/elementaryplus
+sudo apt-get update
+sudo apt-get upgrade && sudo apt-get install elementaryplus
+
+
+◾安装流量监控
+sudo add-apt-repository ppa:nilarimogard/webupd8
+sudo apt-get install update  
+sudo apt-get install indicator-netspeed
+
+
+◾安装菜单编辑器
+sudo add-apt-repository ppa:menulibre-dev/devel
+sudo apt-get update
+sudo apt-get install menulibre
+
+
+◾深度截图工具
+wget http://packages.linuxdeepin.com/deepin/pool/main/d/deepin-scrot/deepin-scrot_2.0-0deepin_all.deb
+安装过后是没有菜单启动icon的，记得添加快捷方式启动
+
+◾文件压缩与解压
+sudo apt-get install unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller
+
+◾安装额外的驱动：
+在软件与更新中直接选择安装额外驱动即可。
+
+
+◾安装Gedit：
+sudo apt-get install gedit
+
+
+◾安装docky
+sudo apt-get install docky
+
+
+◾安装搜索指示器:
+sudo apt-add-repository ppa:elementary-os/unstable-upstream
+sudo apt-get install indicator-synapse
+安装catfish：
+sudo apt-get install catfish
+
+
+在桌面添加图标：
+sudo apt-get install –no-install-recommends nautilus
+cerbere nautilus -n
+tweaks
+
+
+◾安装Shadowsocks-qt5：
+sudo add-apt-repository ppa:hzwhuang/ss-qt5
+sudo apt-get update
+sudo apt-get install shadowsocks-qt5
+
+
+◾安装BleachBit：
+sudo add-apt-repository ppa:n-muench/programs-ppa
+sudo apt-get update
+sudo apt-get install bleachbit
+
+
+◾安装Brackets：
+sudo add-apt-repository ppa:webupd8team/brackets
+sudo apt-get update
+sudo apt-get install brackets
+官网安装。
+
+
+◾安装闹钟：
+sudo apt-get install hourglass 
+
+
+◾Transmission 是一个 BitTorrent 客户端软件，它支持速度限制、制作种子、远程控制、磁力链接、数据加密、损坏修复、数据来源交换等功能。
+sudo apt-get install transmission
+
+
+◾邮件客户端
+sudo apt-get install thunderbird
+
+
+◾移除无用的包：
+sudo apt-get install gtkorphan
+
+
+◾安装Arc主题：
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_15.04/ /' >> /etc/apt/sources.list.d/arc-theme.list"
+sudo apt-get update
+sudo apt-get install arc-theme
+
+
+◾安装Gimp：
+sudo add-apt-repository ppa:otto-kesselgulasch/gimp
+sudo apt-get install gimp
+
+
+◾安装Krita(绘画)：
+sudo add-apt-repository ppa:kubuntu-ppa/backports
+sudo apt-get install krita
+sudo apt-get install kdelibs-bin
+kbuildsycoca4 --noincremental
+
+
+◾最后：
+sudo apt-get autoremove
+sudo apt-get clean
+
+Arronax && alacarte 让你轻松创建桌面启动文件
+slingscold全屏开始菜单
+◾U盘刻录命令：
+sudo dd if=/media/alic/Personer/ISO/elementaryos-stable-0.3.2-i386.iso of=/dev/sdd bs=2M (数值越大 速度越大)
+
+快速启动http服务器：
+python -m SimpleHTTPServer
+
+Chrome启动不用输入密码的命令
+python -c "import gnomekeyring;gnomekeyring.change_password_sync('login', 'YOUR_PASSWORD', '');"
+python -c "import gnomekeyring;gnomekeyring.change_password_sync('login', 'fenglican', '');"
+
+环境安装
+Go语言环境：
+gvm是第三方开发的Go多版本管理工具，类似ruby里面的rvm工具。使用起来相当的方便，安装gvm使用如下命令：
+bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+安装完成后我们就可以安装go了：
+gvm install go1.4.2
+gvm use go1.4.2
+也可以使用下面的命令，省去每次调用gvm use的麻烦： gvm use go1.4.2 --default
+执行完上面的命令之后GOPATH、GOROOT等环境变量会自动设置好，这样就可以直接使用了。 
+
+
+
+
+◾我在终端下运行 idea 的时候出现错误： 
+◾Gtk-WARNING **: 无法在模块路径中找到主题引擎 pixmap
+sudo apt-get install gtk2-engines-pixbuf 
+◾Failed to load module “canberra-gtk-module”
+sudo apt-get install libcanberra-gtk-module
+
+
+◾C++
+安装cmake
+sudo apt-get install cmake
+安装gdb
+sudo apt-get install gdb
+
+
+◾安装媒体解码器并且启用 DVD 回放
+a) 安装多媒体框架
+sudo apt-add-repository ppa:mc3man/trusty-media
+sudo apt-get update
+sudo apt-get install Ubuntu-restricted-extras ffmpeg gstreamer0.10-plugins-ugly libavcodec-extra-54 libvdpau-va-gl1 libmad0 mpg321 gstreamer1.0-libav
+b) 启用 DVD 回放
+sudo /usr/share/doc/libdvdread4/install-css.s­
+
+
+◾禁用访客模式
+sudo vim /usr/share/lightdm/lightdm.conf.d/50-no-guest.conf
+将以下内容添加进这个文件（系统默认没有这个文件）
+[SeatDefaults]
+allow-guest=false
+:wq保存退出，重启即可完成
+
+
+◾ 禁用错误报告：
+$ sudo scratch-text-editor /etc/default/apport
+将enabled改成0
+
+
+◾ 隐藏图标：
+在Applications菜单中有时候会多出来很多没用的图标，虽然没什么实际影响但是很扎眼。
+要隐藏这些图标，需要稍微判断一下：
+$ cd /usr/share/applications/
+然后执行$ ls ，在列出来的文件中找到自己不想显示的图标对应的.desktop文件。通常文件名和图标文字很相似，所以不会很难找。然后：
+$ cp XXXXXXX.desktop ~/.local/share/applications/
+$ vim ~/.local/share/applications/XXXXXXX.desktop
+在其中加上一行:
+NoDisplay=true
+
+
+◾ GTK主题安装:
+sudo add-apt-repository ppa:mpstark/elementary-tweaks-daily
+sudo apt-get update
+sudo apt-get install elementary-yo
+
+◾ 网易云音乐最小化托盘问题 
+然后把原来的Exec那行改为：Exec=env XDG_CURRENT_DESKTOP=Unity netease-cloud-music %U
+
+◾ 安装Albert Spotlight (替代 Mac Spotlight)
+sudo add-apt-repository ppa:noobslab/macbuntu
+sudo apt-get update
+sudo apt-get install albert
+
+
+
+
+
+
+
+
+
+
+
